@@ -5,20 +5,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @RestController
 public class HelloWorldController {
-    @RequestMapping("/")
+    @RequestMapping(value = "/")
     @ResponseBody
 
     public String sayHello() {
         return "Strona glowna";
     }
 
-    @RequestMapping(value = "/a")
+    @RequestMapping(value = "/a", headers="name=pankaj")
+    @ResponseBody
     public String sayHello2() {
         return "Hello Spring Boot2!!";
     }
 
+    @RequestMapping(value = "/ac", headers = "key=val", method = GET)
+    @ResponseBody
+    public String getFoosWithHeader() {
+        return "Get some Foos with Header";
+    }
 
     @RequestMapping("/b")
     public String sayHello3() {
